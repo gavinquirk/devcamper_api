@@ -1,4 +1,4 @@
-const mongoose = require('mongooser');
+const mongoose = require('mongoose');
 
 const BootcampSchema = new mongoose.Schema({
   name: {
@@ -40,13 +40,11 @@ const BootcampSchema = new mongoose.Schema({
     // GeoJSON Point
     type: {
       type: String,
-      enum: ['Point'],
-      required: true
+      enum: ['Point']
     },
     coordinates: {
       type: [Number],
-      index: '2dsphere',
-      required: true
+      index: '2dsphere'
     },
     formattedAddress: String,
     street: String,
