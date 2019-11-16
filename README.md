@@ -10,7 +10,8 @@
    ...* GEOCODER*API_KEY= (API key from geocoder provider)  
    ...* FILE*UPLOAD_PATH= (File path to public/uploads folder)  
    ...* MAX*FILE_UPLOAD= (Maximum file upload size)  
-   ...* JWT_SECRET= (Secret string used in password encryption)
+   ...* JWT_SECRET= (Secret string used in password encryption)  
+   ...\* JWT_EXPIRE= (Expiration time for JWT)
 
 ### Server start and other scripts
 
