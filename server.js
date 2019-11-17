@@ -6,10 +6,12 @@ const colors = require('colors');
 const fileupload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
+const xss = require('xss-clean');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 
-// Load env vars
+// Load Env Vars
 dotenv.config({ path: './config/config.env' });
 
 // Connect to Database
@@ -30,21 +32,27 @@ app.use(express.json());
 // Cookie Parser
 app.use(cookieParser());
 
-// Dev logging middleware
+// Dev Logging Middleware
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// File uploading
+// File Uploading
 app.use(fileupload());
 
 // Sanitize Data
 app.use(mongoSanitize());
 
-// Set static folder
+// Set Security Headers
+app.use(helmet());
+
+// Prevent XSS Attacks
+app.use(xss());
+
+// Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Mount routers
+// Mount Routers
 app.use('/api/v1/bootcamps', bootcamps);
 app.use('/api/v1/courses', courses);
 app.use('/api/v1/auth', auth);
